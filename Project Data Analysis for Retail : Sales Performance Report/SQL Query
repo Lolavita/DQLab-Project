@@ -41,3 +41,11 @@ FROM dqlab_sales_store
 WHERE year(order_date) = 2012 AND order_status = "Order Finished"
 GROUP BY product_category, product_sub_category, year(order_date) 
 ORDER BY sales DESC;
+
+#Showing the total number of customer which transacted every year from 2009 to 2012
+
+SELECT year(order_date) AS years, 
+COUNT(distinct lower(customer)) AS number_of_customer 
+FROM dqlab_sales_store 
+WHERE order_status = "Order Finished" 
+GROUP BY year(order_date);
