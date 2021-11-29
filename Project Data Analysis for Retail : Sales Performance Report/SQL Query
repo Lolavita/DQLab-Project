@@ -1,4 +1,4 @@
-#Showing the total sales and total order from 2009-2012
+#Overall performance by Year
 
 SELECT year(order_date) AS years, 
 SUM(sales) AS sales, 
@@ -7,7 +7,7 @@ from dqlab_sales_store
 where order_status = "Order Finished" 
 GROUP BY year(order_date);
 
-#Showing the total sales based on the product sub category only in 2011 and 2012
+#Overall Performance by Product Sub Category
 
 SELECT year(order_date) AS years,
 product_sub_category,
@@ -18,7 +18,7 @@ AND order_status = "Order Finished"
 GROUP BY year(order_date), product_sub_category 
 ORDER BY year(order_date), sales DESC;
 
-#Create Derived Tables to count the total sales and total discount sort by year and counting the burn rate percentage (total discount / total sales) * 100) with maximum burn rate 4.5%
+#Promotion Effectiveness and Efficiency by Years
 
 SELECT year(order_date) AS years,
 SUM(sales) AS sales, 
@@ -29,7 +29,7 @@ WHERE order_status = "Order Finished"
 GROUP BY year(order_date) 
 ORDER BY year(order_date);
 
-#Showing the data only in 2012 and adding 2 columns (product_sub_category and product_category)
+#Promotion Effectiveness and Efficiency by Product Sub Category
 
 SELECT year(order_date) AS years,
 product_sub_category, 
@@ -42,7 +42,7 @@ WHERE year(order_date) = 2012 AND order_status = "Order Finished"
 GROUP BY product_category, product_sub_category, year(order_date) 
 ORDER BY sales DESC;
 
-#Showing the total number of customer which transacted every year from 2009 to 2012
+#Customers Transactions per Year
 
 SELECT year(order_date) AS years, 
 COUNT(distinct lower(customer)) AS number_of_customer 
